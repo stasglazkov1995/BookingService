@@ -1,0 +1,36 @@
+image: docker:stable
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  HEROKU_APP_NAME: adn-decrypt
+
+stages:
+  - deploy-test
+  - deploy-stage
+  - deploy-prod
+
+deploy-test:
+  stage: deploy-test
+  when: manual
+  only:
+    - master
+  script:
+    - apk add --no-cache curl
+    - docker build --tag $HEROKU_TEST_REGISTRY --file ./Dockerfile "."
+    - docker login -u $HEROKU_USER -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker push $HEROKU_TEST_REGISTRY
+    - ./deploy-test.sh $HEROKU_TEST_REGISTRY
+  
+deploy-stage:
+  stage: deploy-stage
+  when: manual
+  only:
+    - master
+  script:
+    - apk add --no-cache curl
+    - docker build --tag $HEROKU_STAGE_REGISTRY --file ./Dockerfile "."
+    - docker login -u $HEROKU_USER -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker push $HEROKU_STAGE_REGISTRY
+    - ./deploy-stage.sh $HEROKU_STAGE_REGISTRY

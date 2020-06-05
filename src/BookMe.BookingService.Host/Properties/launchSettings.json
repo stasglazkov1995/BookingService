@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BookMe.BookingService.Host": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "BONSAI_URL": "http://localhost:9200",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

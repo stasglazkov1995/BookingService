@@ -1,0 +1,17 @@
+version: '3.3'
+
+networks:
+  booking-service-private-network:
+
+services:
+  booking-service:
+    image: microsoft/dotnet:3.1-sdk
+    container_name: booking-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - booking-service-private-network
+    ports:
+     - 8080:80
+    restart: unless-stopped

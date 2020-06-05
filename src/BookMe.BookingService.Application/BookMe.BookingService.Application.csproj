@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="CommandHandlers\" />
+    <Folder Include="Events\" />
+    <Folder Include="EventHandlers\" />
+    <Folder Include="Queries\" />
+    <Folder Include="QueryHandlers\" />
+    <Folder Include="Commands\EventCommands\" />
+    <Folder Include="CommandHandlers\EventCommands\" />
+    <Folder Include="Queries\EventQueries\" />
+    <Folder Include="QueryHandlers\EventQueries\" />
+    <Folder Include="Events\EventEvents\" />
+    <Folder Include="EventHandlers\EventEvents\" />
+    <Folder Include="Pipelines\" />
+    <Folder Include="Commands\Abstractions\" />
+    <Folder Include="Commands\BookingCommands\" />
+    <Folder Include="CommandHandlers\BookingCommands\" />
+    <Folder Include="Queries\BookingQueries\" />
+    <Folder Include="Events\BookingEvents\" />
+    <Folder Include="EventHandlers\BookingEvents\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookMe.BookingService.Domain\BookMe.BookingService.Domain.csproj" />
+    <ProjectReference Include="..\BookMe.BookingService.Data\BookMe.BookingService.Data.csproj" />
+  </ItemGroup>
+</Project>
